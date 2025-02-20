@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Women in Data Science</title>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+
+        /* Navbar styles */
+        nav {
+            background-color: whitesmoke;
+            color: white;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 80px;
+            margin-right: 10px;
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        nav ul li {
+            margin: 0 20px;
+        }
+
+        nav ul li a {
+            color: #333;
+            text-decoration: none;
+            font-size: 20px;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -5px;
+            width: 0;
+            height: 2px;
+            background: #333;
+            transition: width 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: #ff5722;
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero section */
+        .hero {
+            text-align: center;
+            padding: 70px 20px;
+            background: linear-gradient(120deg, #ff7eb3, #6a11cb, #2575fc);
+            color: white;
+            animation: gradientBG 6s infinite alternate;
+        }
+
+        @keyframes gradientBG {
+            0% {
+                background-position: 0% 50%;
+            }
+            100% {
+                background-position: 100% 50%;
+            }
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 15px;
+            animation: fadeInDown 1s ease-in-out;
+        }
+
+        .hero p {
+            font-size: 22px;
+            margin-bottom: 25px;
+            animation: fadeInUp 1s ease-in-out;
+        }
+
+        .hero button {
+            padding: 12px 25px;
+            background-color: #ff5722;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 18px;
+            border-radius: 5px;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+            animation: bounceIn 1.5s ease;
+        }
+
+        .hero button:hover {
+            transform: scale(1.1);
+            background-color: #e64a19;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes bounceIn {
+            0%, 20%, 40%, 60%, 80%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        /* Description section */
+        .description {
+            padding: 20px;
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin: 20px;
+        }
+
+        .description .content {
+            max-width: 800px;
+            text-align: center;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            background-color: #f9f9f9;
+        }
+
+        .description .content p {
+            font-size: 18px;
+            line-height: 1.6;
+        }
+
+        .description .past-events {
+            max-width: auto;
+            text-align: left;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            background-color: #f9f9f9;
+        }
+
+        .description .past-events h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .description .past-events ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .description .past-events ul li {
+            margin-bottom: 10px;
+        }
+
+        .description .past-events ul li a {
+            color: #2575fc;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .description .past-events ul li a:hover {
+            color: #6a11cb;
+        }
+
+        /* Speakers section */
+        .speakers, .committee {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .section-title {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .card-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .card {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            width: 200px;
+            text-align: center;
+            padding: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .card img {
+            width: 100%;
+            border-radius: 50%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .card h3 {
+            font-size: 18px;
+            margin: 10px 0 5px;
+        }
+
+        .card p {
+            font-size: 14px;
+            color: #555;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav>
+        <div class="logo">
+            <img src="./assets/nav-logo-wids.png" alt="Left Logo">
+        </div>
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Event</a></li>
+            <li><a href="#">Speaker</a></li>
+            <li><a href="#">Committee</a></li>
+        </ul>
+        <div class="logo">
+            <img src="./assets/kletech-logo.png" alt="Right Logo">
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="hero">
+        <h1>Women in Data Science</h1>
+        <p>WIDS Datathon Workshop 2025 <br> (Online Mode)<br>Jan 5, 2025 | 10:30 AM to 12:30 PM</p>
+        <button>Register Now</button>
+    </div>
+
+    <!-- Description Section -->
+    <div class="description">
+        <div class="content">
+            <p>Join us for an inspiring workshop on data science, featuring expert speakers and insightful sessions. This event is a part of the global Women in Data Science (WiDS) initiative, aimed at empowering women in the field of data science. Be part of a movement that bridges the gap and fosters innovation in data science. Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet, eius molestias! Dicta quisquam, et, illum ipsam doloribus minus natus amet harum blanditiis consequuntur maiores! Dolorem corporis pariatur aperiam nihil deserunt quidem molestiae nulla sunt! Error totam, sunt ducimus sapiente fugiat animi voluptatum ullam voluptates incidunt. Cumque deserunt, eos beatae iste voluptatem ducimus laborum nemo harum, explicabo, perspiciatis fugiat? Quam animi rem harum placeat quo tempore eos quos amet unde veniam. </p>
+        </div>
+        <div class="past-events">
+            <h3>Past Events</h3>
+            <ul>
+                <li><a href="#">WiDS Workshop 2024</a></li>
+                <li><a href="#">WiDS Workshop 2023</a></li>
+                <li><a href="#">WiDS Workshop 2022</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Speakers Section -->
+    <div class="speakers">
+        <h2 class="section-title">Speakers</h2>
+        <div class="card-container">
+            <div class="card">
+                <img src="https://placehold.co/400" alt="Speaker 1">
+                <h3>Dr. Jane Doe</h3>
+                <p>Data Scientist, ABC Corp</p>
+            </div>
+            <div class="card">
+
+                <img src="https://via.placeholder.com/100" alt="Speaker 2">
+                <h3>Ms. Alice Smith</h3>
+                <p>AI Researcher, XYZ Labs</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Committee Section -->
+    <div class="committee">
+        <h2 class="section-title">Committee</h2>
+        <div class="card-container">
+            <!-- 8 Cards for Committee Members -->
+            <div class="card">
+                <img src="https://via.placeholder.com/100" alt="Member 1">
+                <h3>John Doe</h3>
+            </div>
+            <div class="card">
+                <img src="https://via.placeholder.com/100" alt="Member 2">
+                <h3>Jane Smith</h3>
+            </div>
+            <div class="card">
+                <img src="https://via.placeholder.com/100" alt="Member 3">
+                <h3>Emily Brown</h3>
+            </div>
+            <div class="card">
+                <img src="https://via.placeholder.com/100" alt="Member 4">
+                <h3>Michael Lee</h3>
+            </div>
+            <div class="card">
+                <img src="https://via.placeholder.com/100" alt="Member 5">
+                <h3>Sarah Wilson</h3>
+            </div>
+            <div class="card">
+                <img src="https://via.placeholder.com/100" alt="Member 6">
+                <h3>Chris Evans</h3>
+            </div>
+            <div class="card">
+                <img src="https://via.placeholder.com/100" alt="Member 7">
+                <h3>Anna White</h3>
+            </div>
+            <div class="card">
+                <img src="https://via.placeholder.com/100" alt="Member 8">
+                <h3>David Clark</h3>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>KLE Technological University</p>
+    </footer>
+</body>
+</html>
+
