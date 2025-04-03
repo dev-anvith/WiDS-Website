@@ -1,378 +1,661 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Women in Data Science</title>
-    <style>
-        body {
-            font-family: 'Roboto', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f9f9f9;
-            color: #333;
-        }
-
-        /* Navbar styles */
-        nav {
-            background-color: whitesmoke;
-            color: white;
-            padding: 20px 40px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-        }
-
-        .logo img {
-            height: 80px;
-            margin-right: 10px;
-        }
-
-        nav ul {
-            list-style: none;
-            margin: 0;
-            padding: 0;
-            display: flex;
-        }
-
-        nav ul li {
-            margin: 0 20px;
-        }
-
-        nav ul li a {
-            color: #333;
-            text-decoration: none;
-            font-size: 20px;
-            position: relative;
-            transition: color 0.3s ease;
-        }
-
-        nav ul li a::after {
-            content: '';
-            position: absolute;
-            left: 0;
-            bottom: -5px;
-            width: 0;
-            height: 2px;
-            background: #333;
-            transition: width 0.3s ease;
-        }
-
-        nav ul li a:hover {
-            color: #ff5722;
-        }
-
-        nav ul li a:hover::after {
-            width: 100%;
-        }
-
-        /* Hero section */
-        .hero {
-            text-align: center;
-            padding: 70px 20px;
-            background: linear-gradient(120deg, #ff7eb3, #6a11cb, #2575fc);
-            color: white;
-            animation: gradientBG 6s infinite alternate;
-        }
-
-        @keyframes gradientBG {
-            0% {
-                background-position: 0% 50%;
-            }
-            100% {
-                background-position: 100% 50%;
-            }
-        }
-
-        .hero h1 {
-            font-size: 48px;
-            margin-bottom: 15px;
-            animation: fadeInDown 1s ease-in-out;
-        }
-
-        .hero p {
-            font-size: 22px;
-            margin-bottom: 25px;
-            animation: fadeInUp 1s ease-in-out;
-        }
-
-        .hero button {
-            padding: 12px 25px;
-            background-color: #ff5722;
-            color: white;
-            border: none;
-            cursor: pointer;
-            font-size: 18px;
-            border-radius: 5px;
-            transition: transform 0.3s ease, background-color 0.3s ease;
-            animation: bounceIn 1.5s ease;
-        }
-
-        .hero button:hover {
-            transform: scale(1.1);
-            background-color: #e64a19;
-        }
-
-        @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes bounceIn {
-            0%, 20%, 40%, 60%, 80%, 100% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-10px);
-            }
-        }
-
-        /* Description section */
-        .description {
-            padding: 20px;
-            display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap;
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            margin: 20px;
-        }
-
-        .description .content {
-            max-width: 800px;
-            text-align: center;
-            padding: 20px;
-            border: 1px solid #ddd;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            background-color: #f9f9f9;
-        }
-
-        .description .content p {
-            font-size: 18px;
-            line-height: 1.6;
-        }
-
-        .description .past-events {
-            max-width: auto;
-            text-align: left;
-            padding: 20px;
-            border: 1px solid #ddd;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            background-color: #f9f9f9;
-        }
-
-        .description .past-events h3 {
-            font-size: 20px;
-            margin-bottom: 10px;
-        }
-
-        .description .past-events ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        .description .past-events ul li {
-            margin-bottom: 10px;
-        }
-
-        .description .past-events ul li a {
-            color: #2575fc;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .description .past-events ul li a:hover {
-            color: #6a11cb;
-        }
-
-        /* Speakers section */
-        .speakers, .committee {
-            padding: 20px;
-            text-align: center;
-        }
-
-        .section-title {
-            font-size: 24px;
-            margin-bottom: 20px;
-        }
-
-        .card-container {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 20px;
-        }
-
-        .card {
-            background: white;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            width: 200px;
-            text-align: center;
-            padding: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .card:hover {
-            transform: scale(1.05);
-            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
-        }
-
-        .card img {
-            width: 100%;
-            border-radius: 50%;
-            height: 200px;
-            object-fit: cover;
-        }
-
-        .card h3 {
-            font-size: 18px;
-            margin: 10px 0 5px;
-        }
-
-        .card p {
-            font-size: 14px;
-            color: #555;
-        }
-
-        /* Footer */
-        footer {
-            background-color: #333;
-            color: white;
-            text-align: center;
-            padding: 10px 0;
-            margin-top: 20px;
-        }
-    </style>
-</head>
-<body>
-    <!-- Navbar -->
-    <nav>
-        <div class="logo">
-            <img src="./assets/nav-logo-wids.png" alt="Left Logo">
-        </div>
-        <ul>
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Women in Data Science</title>
+      <style>
+         body {
+         font-family: 'Roboto', sans-serif;
+         margin: 0;
+         padding: 0;
+         background-color: #f9f9f9;
+         color: #333;
+         }
+         /* Navbar styles */
+         /* nav {
+         background-color: whitesmoke;
+         color: white;
+         padding: 20px 40px;
+         display: flex;
+         justify-content: space-between;
+         align-items: center;
+         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+         }
+         .logo {
+         display: flex;
+         align-items: center;
+         }
+         .logo img {
+         height: 80px;
+         margin-right: 10px;
+         }
+         nav ul {
+         list-style: none;
+         margin: 0;
+         padding: 0;
+         display: flex;
+         }
+         nav ul li {
+         margin: 0 20px;
+         }
+         nav ul li a {
+         color: #333;
+         text-decoration: none;
+         font-size: 20px;
+         position: relative;
+         transition: color 0.3s ease;
+         }
+         nav ul li a::after {
+         content: '';
+         position: absolute;
+         left: 0;
+         bottom: -5px;
+         width: 0;
+         height: 2px;
+         background: #333;
+         transition: width 0.3s ease;
+         }
+         nav ul li a:hover {
+         color: #ff5722;
+         }
+         nav ul li a:hover::after {
+         width: 100%;
+         } */
+         .navbar {
+         display: flex;
+         justify-content: space-between;
+         align-items: center;
+         padding: 15px 20px;
+         background-color: whitesmoke;
+         color: white;
+         }
+         .logo img{
+         width: 200px;
+         }
+         .nav-links {
+         display: flex;
+         list-style: none;
+         padding: 0;
+         }
+         .nav-links li {
+         margin: 0 15px;
+         }
+         .nav-links a {
+         text-decoration: none;
+         color: black;
+         font-size: 18px;
+         }
+         .hamburger {
+         display: none;
+         font-size: 24px;
+         cursor: pointer;
+         }
+         .sidebar {
+         position: fixed;
+         top: 0;
+         right: -250px;
+         width: 250px;
+         height: 100%;
+         background-color: #444;
+         padding-top: 60px;
+         transition: 0.3s;
+         }
+         .sidebar a {
+         display: block;
+         padding: 15px;
+         color: white;
+         text-decoration: none;
+         }
+         .sidebar a:hover {
+         background-color: #555;
+         }
+         .close-btn {
+         position: absolute;
+         top: 10px;
+         right: 20px;
+         font-size: 30px;
+         cursor: pointer;
+         }
+         /* Hero section */
+         .hero {
+         text-align: center;
+         padding: 70px 20px;
+         background: linear-gradient(to right, #b3e6b3, #66cc66);
+         color: white;
+         animation: gradientBG 6s infinite alternate;
+         }
+         @keyframes gradientBG {
+         0% {
+         background-position: 0% 50%;
+         }
+         100% {
+         background-position: 100% 50%;
+         }
+         }
+         .hero h1 {
+         font-size: 48px;
+         margin-bottom: 15px;
+         animation: fadeInDown 1s ease-in-out;
+         }
+         .hero p {
+         font-size: 22px;
+         margin-bottom: 25px;
+         animation: fadeInUp 1s ease-in-out;
+         }
+         .hero button {
+         padding: 12px 25px;
+         background-color: #ff5722;
+         color: white;
+         border: none;
+         cursor: pointer;
+         font-size: 18px;
+         border-radius: 5px;
+         transition: transform 0.3s ease, background-color 0.3s ease;
+         animation: bounceIn 1.5s ease;
+         }
+         .hero button:hover {
+         transform: scale(1.1);
+         background-color: #e64a19;
+         }
+         @keyframes fadeInDown {
+         from {
+         opacity: 0;
+         transform: translateY(-20px);
+         }
+         to {
+         opacity: 1;
+         transform: translateY(0);
+         }
+         }
+         @keyframes fadeInUp {
+         from {
+         opacity: 0;
+         transform: translateY(20px);
+         }
+         to {
+         opacity: 1;
+         transform: translateY(0);
+         }
+         }
+         @keyframes bounceIn {
+         0%, 20%, 40%, 60%, 80%, 100% {
+         transform: translateY(0);
+         }
+         50% {
+         transform: translateY(-10px);
+         }
+         }
+         /* Description section */
+         .description {
+         padding: 20px;
+         display: flex;
+         justify-content: space-around;
+         flex-wrap: wrap;
+         background: white;
+         border-radius: 10px;
+         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+         margin: 20px;
+         }
+         .description .content {
+         max-width: 800px;
+         text-align: center;
+         padding: 20px;
+         border: 1px solid #ddd;
+         border-radius: 10px;
+         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+         background-color: #f9f9f9;
+         }
+         .description .content p {
+         font-size: 18px;
+         line-height: 1.6;
+         }
+         .description .past-events {
+         max-width: auto;
+         text-align: left;
+         padding: 20px;
+         border: 1px solid #ddd;
+         border-radius: 10px;
+         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+         background-color: #f9f9f9;
+         }
+         .description .past-events h3 {
+         font-size: 20px;
+         margin-bottom: 10px;
+         }
+         .description .past-events ul {
+         list-style: none;
+         padding: 0;
+         }
+         .description .past-events ul li {
+         margin-bottom: 10px;
+         }
+         .description .past-events ul li a {
+         color: #2575fc;
+         text-decoration: none;
+         transition: color 0.3s ease;
+         }
+         .description .past-events ul li a:hover {
+         color: #6a11cb;
+         }
+         /* Refined Speakers Section Styling */
+         .speakers {
+         padding: 50px 20px;
+         background-color: #ffffff;
+         }
+         .section-title {
+         font-size: 28px;
+         font-weight: bold;
+         color: #333;
+         margin-bottom: 30px;
+         }
+         .card-container {
+         display: flex;
+         justify-content: center;
+         flex-wrap: wrap;
+         gap: 20px;
+         }
+         .card {
+         background: #fff;
+         border: 1px solid #ddd;
+         border-radius: 10px;
+         width: 320px;
+         text-align: center;
+         padding: 20px;
+         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+         transition: transform 0.3s ease, box-shadow 0.3s ease;
+         }
+         .card:hover {
+         transform: scale(1.05);
+         box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+         }
+         .card img {
+         width: 100%;
+         border-radius: 10px;
+         height: auto;
+         object-fit: cover;
+         border-radius: 50%;
+         }
+         .card h3 {
+         font-size: 20px;
+         margin: 15px 0 10px;
+         color: #333;
+         }
+         .card p {
+         font-size: 16px;
+         color: #666;
+         margin-bottom: 10px;
+         }
+         .register-btn {
+         padding: 10px 20px;
+         background-color: #ff5722;
+         color: white;
+         border: none;
+         cursor: pointer;
+         font-size: 16px;
+         border-radius: 5px;
+         transition: transform 0.3s ease, background-color 0.3s ease;
+         }
+         .register-btn:hover {
+         transform: scale(1.1);
+         background-color: #e64a19;
+         }
+         .event-details {
+         font-family: 'Arial', sans-serif;
+         background: #f9f9f9; /* Light gray background */
+         padding: 15px;
+         border-radius: 8px;
+         max-width: 400px;
+         box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+         }
+         .event-details p {
+         margin: 8px 0;
+         font-size: 16px;
+         color: #333;
+         }
+         .event-details .designation {
+         font-size: 14px;
+         font-weight: bold;
+         color: #555;
+         text-align: center;
+         margin-top: -5px;
+         margin-bottom: 10px;
+         }
+         .email {
+         color: #0073e6;
+         text-decoration: none;
+         word-break: break-word; /* Ensures long emails wrap properly */
+         }
+         .event-details strong {
+         color: #222;
+         }
+         /* Workshop 2 Special Layout */
+         .workshop-2 {
+         width: 650px;
+         padding: 20px;
+         }
+         .workshop-2-content {
+         display: flex;
+         justify-content: space-between;
+         align-items: center;
+         gap: 20px;
+         }
+         .speaker-box {
+         flex: 1;
+         text-align: left;
+         padding: 15px;
+         border-radius: 10px;
+         background: #f9f9f9;
+         box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+         }
+         .speakers, .committee-section {
+         padding: 20px;
+         text-align: center;
+         }
+         footer {
+         background-color: #333;
+         color: white;
+         text-align: center;
+         padding: 10px 0;
+         margin-top: 20px;
+         }
+         .committee-section {
+         padding: 50px 20px;
+         background-color: #ffffff;
+         }
+         .committee-title {
+         font-size: 30px;
+         font-weight: bold;
+         color: #222;
+         margin-bottom: 40px;
+         }
+         .committee-category {
+         margin-bottom: 40px;
+         }
+         .committee-category-title {
+         font-size: 24px;
+         font-weight: bold;
+         color: #444;
+         margin-bottom: 20px;
+         }
+         .committee-card-container {
+         display: flex;
+         justify-content: center;
+         flex-wrap: wrap;
+         gap: 20px;
+         }
+         .committee-card {
+         background: #fff;
+         border: 1px solid #ccc;
+         border-radius: 12px;
+         width: 260px;
+         text-align: center;
+         padding: 25px;
+         box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+         transition: transform 0.3s ease, box-shadow 0.3s ease;
+         }
+         .committee-card:hover {
+         transform: scale(1.06);
+         box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+         }
+         .committee-card img {
+         width: 110px;
+         height: 110px;
+         border-radius: 50%;
+         object-fit: cover;
+         margin-bottom: 12px;
+         }
+         .committee-card h3 {
+         font-size: 20px;
+         margin: 12px 0;
+         color: #222;
+         }
+         .committee-name-block {
+         font-size: 18px;
+         font-weight: bold;
+         color: #555;
+         }
+         .section-title{
+         background: linear-gradient(to right, #b3e6b3, #66cc66);
+         }
+         .nav-links li a:hover {
+         color: #fff; /* Change text color */
+         background-color: #4CAF50; /* Green background */
+         border-radius: 5px;
+         padding: 5px 10px;
+         transition: 0.3s;
+         }
+         @media (max-width: 768px) {
+         .navbar {
+         flex-direction: row;
+         text-align: center;
+         justify-content: space-evenly;
+         align-items: center;
+         }
+         .nav-links {
+         display: none;
+         }
+         .hamburger{
+         display: block;
+         width: 10px;
+         color: #222;
+         }
+         .hero {
+         padding: 30px;
+         }
+         .hero h1{
+         font-size: 1.7rem;
+         }   
+         .hero p{
+         font-size: 1.2rem;
+         }
+         .hero button{
+         font-size: 0.8rem;
+         padding: 10px;
+         }
+         .description .content p{
+         font-size: 1rem;
+         }
+         .card {
+         width: 70%;
+         text-align: center;
+         }
+         .workshop-2-content{
+         display: flex;
+         flex-direction: column;
+         }
+         .logo img{
+         width: 100px;
+         }
+         .email{
+         word-break: break-all;
+         }
+         }
+      </style>
+   </head>
+   <body>
+      <!-- Navbar -->
+      <nav class="navbar">
+         <div class="logo"><img src="public/wids-matrix-1line-logo1.jpg" alt=""></div>
+         <ul class="nav-links">
             <li><a href="#">Home</a></li>
-            <li><a href="#">Event</a></li>
-            <li><a href="#">Speaker</a></li>
-            <li><a href="#">Committee</a></li>
-        </ul>
-        <div class="logo">
-            <img src="./assets/kletech-logo.png" alt="Right Logo">
-        </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <div class="hero">
-        <h1>Women in Data Science</h1>
-        <p>WIDS Datathon Workshop 2025 <br> (Online Mode)<br>Jan 5, 2025 | 10:30 AM to 12:30 PM</p>
-        <button>Register Now</button>
-    </div>
-
-    <!-- Description Section -->
-    <div class="description">
-        <div class="content">
-            <p>Join us for an inspiring workshop on data science, featuring expert speakers and insightful sessions. This event is a part of the global Women in Data Science (WiDS) initiative, aimed at empowering women in the field of data science. Be part of a movement that bridges the gap and fosters innovation in data science. Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet, eius molestias! Dicta quisquam, et, illum ipsam doloribus minus natus amet harum blanditiis consequuntur maiores! Dolorem corporis pariatur aperiam nihil deserunt quidem molestiae nulla sunt! Error totam, sunt ducimus sapiente fugiat animi voluptatum ullam voluptates incidunt. Cumque deserunt, eos beatae iste voluptatem ducimus laborum nemo harum, explicabo, perspiciatis fugiat? Quam animi rem harum placeat quo tempore eos quos amet unde veniam. </p>
-        </div>
-        <div class="past-events">
+            <li><a href="#event">Event</a></li>
+            <li><a href="#speaker">Speaker</a></li>
+            <li><a href="#committee">Committee</a></li>
+         </ul>
+         <div class="logo"><img src="public/kletech-logo.png" alt=""> </div>
+         <div class="hamburger" onclick="openSidebar()">&#9776;</div>
+      </nav>
+      <div class="sidebar" id="sidebar">
+         <span class="close-btn" onclick="closeSidebar()">&times;</span>
+         <li><a href="#event">Event</a></li>
+         <li><a href="#speaker">Speaker</a></li>
+         <li><a href="#committee">Committee</a></li>
+      </div>
+      <script>
+         function openSidebar() {
+             document.getElementById("sidebar").style.right = "0";
+         }
+         function closeSidebar() {
+             document.getElementById("sidebar").style.right = "-250px";
+         }
+      </script>
+      <!-- Hero Section -->
+      <div class="hero" >
+         <h1>Women in Data Science</h1>
+         <p>WIDS Datathon Workshop 2025 <br> (Online Mode)<br>Jan 5, 2025 | 10:30 AM to 12:30 PM</p>
+         <button>Register Now</button>
+      </div>
+      <!-- Description Section -->
+      <div class="description" id="event">
+         <div class="content">
+            <p>
+               WiDS Hubballi is independently organized by KLE Technological University to be part of the mission to increase participation of women in data science and to feature outstanding women doing outstanding work.
+            </p>
+            <p><b>The 8th Annual WiDS Datathon 2025 Challenge: Unraveling the Mysteries of the Female Brain</b></p>
+            <p>The WiDS Datathon continues its mission to empower women in data science, providing a platform for participants worldwide to enhance their skills and connect with like-minded individuals. Open to data scientists of all levels, including beginners, the 8th annual WiDS Datathon focuses on advancing research in women’s brain health. In support of this global challenge, WiDS Hubballi is hosting a Datathon Workshop to help participants build essential data science skills and engage effectively in the competition. Experts in the field will lead sessions, offering valuable insights into machine learning applications in neuroscience and guiding participants in developing analytical solutions for real-world healthcare challenges.</p>
+         </div>
+         <div class="past-events">
             <h3>Past Events</h3>
             <ul>
-                <li><a href="#">WiDS Workshop 2024</a></li>
-                <li><a href="#">WiDS Workshop 2023</a></li>
-                <li><a href="#">WiDS Workshop 2022</a></li>
+               <li><a href="https://wids.kletech.ac.in/">WiDS Workshop 2024</a></li>
+               <li><a href="#">WiDS Workshop 2023</a></li>
+               <li><a href="#">WiDS Workshop 2022</a></li>
             </ul>
-        </div>
-    </div>
-
-    <!-- Speakers Section -->
-    <div class="speakers">
-        <h2 class="section-title">Speakers</h2>
-        <div class="card-container">
+         </div>
+      </div>
+      <div class="speakers" id="speaker">
+         <h2 class="section-title">Speakers</h2>
+         <div class="card-container">
+            <!-- Single Speaker Card -->
             <div class="card">
-                <img src="https://placehold.co/400" alt="Speaker 1">
-                <h3>Dr. Jane Doe</h3>
-                <p>Data Scientist, ABC Corp</p>
+               <h3>Workshop 1</h3>
+               <img src="public/ashwini-speaker2.png" alt="Ashwini Chandrashekharaiah" />
+               <div class="event-details">
+                  <div class="speaker-info">
+                     <p><strong>Topic:</strong> <span>Crack the Code: Mastering the WiDS Datathon 2025</span></p>
+                     <p><strong>Speaker:</strong> <span>Ms. Ashwini Chandrashekharaiah</span></p>
+                     <p class="designation">Senior Manager, Walmart Global Tech India</p>
+                     <p class="email"><strong>Email:</strong> <a href="mailto:Ashwini.Chandrashekharaiah@walmart.com">Ashwini.Chandrashekharaiah@walmart.com</a></p>
+                     <p><strong>Date:</strong> <span>April 15, 2025</span></p>
+                     <p><strong>Time:</strong> <span>4:30 PM – 5:30 PM IST</span></p>
+                  </div>
+               </div>
+               <button class="register-btn">Register</button>
             </div>
-            <div class="card">
-
-                <img src="https://via.placeholder.com/100" alt="Speaker 2">
-                <h3>Ms. Alice Smith</h3>
-                <p>AI Researcher, XYZ Labs</p>
+            <!-- Workshop 2 - Combined Card with Two Speakers -->
+            <div class="card workshop-2">
+               <h3>Workshop 2</h3>
+               <div class="workshop-2-content">
+                  <!-- Speaker 1 -->
+                  <div class="speaker-box">
+                     <img src="public/srujana-speaker1.png" alt="Srujana Kaddevarmuth" />
+                     <div class="event-details">
+                        <p><strong>Topic:</strong> <span>Trends in Gen AI</span></p>
+                        <p><strong>Speaker:</strong> <span>Ms. Srujana Kaddevarmuth</span></p>
+                        <p class="designation">AI Leader, Walmart Global Tech, USA</p>
+                        <p><strong>Email:</strong> <span class="email">srujana.aba@gmail.com</span></p>
+                        <p><strong>Time:</strong> <span>8:30 AM – 10:00 AM IST</span></p>
+                     </div>
+                  </div>
+                  <!-- Speaker 2 -->
+                  <div class="speaker-box">
+                     <img src="public/saroja-speaker.png" alt="Dr. Saroja Naik" />
+                     <div class="speaker-card">
+                        <div class="event-details">
+                           <p><strong>Topic:</strong> <span>Unraveling the Mysteries of the Female Brain</span></p>
+                           <p><strong>Speaker:</strong> <span>Dr. Saroja Naik</span></p>
+                           <p class="designation">Neurologist and Expert in Brain Health</p>
+                           <p><strong>Time:</strong> <span>10:00 AM – 11:00 AM IST</span></p>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <p><strong>Date:</strong> 19/04/25</p>
+               <button class="register-btn">Register</button>
             </div>
-        </div>
-    </div>
-
-    <!-- Committee Section -->
-    <div class="committee">
-        <h2 class="section-title">Committee</h2>
-        <div class="card-container">
-            <!-- 8 Cards for Committee Members -->
-            <div class="card">
-                <img src="https://via.placeholder.com/100" alt="Member 1">
-                <h3>John Doe</h3>
+         </div>
+      </div>
+      <div class="committee-section" id="committee">
+         <h2 class="section-title">Committee</h2>
+         <div class="committee-category">
+            <h3 class="committee-category-title">Patrons</h3>
+            <div class="committee-card-container">
+               <div class="committee-card">
+                  <img src="public/patron-vc.jpg" alt="Patron 1">
+                  <h3>Dr. Ashok Shettar</h3>
+                  <h5>Pro Chancellor</h5>
+               </div>
+               <div class="committee-card">
+                  <img src="public/ambassador-meena.jpg" alt="Patron 2">
+                  <h3>Dr. Meena S. M</h3>
+                  <h5>Dean Faculty, SoCSE</h5>
+               </div>
+               <div class="committee-card">
+                  <img src="public/hod-vijayalakshmi-1.jpg" alt="Patron 3">
+                  <h3>Dr. Vijayalakshmi M</h3>
+                  <h5>HoD, SoCSE</h5>
+               </div>
             </div>
-            <div class="card">
-                <img src="https://via.placeholder.com/100" alt="Member 2">
-                <h3>Jane Smith</h3>
+         </div>
+         <div class="committee-category">
+            <h3 class="committee-category-title">Advisors</h3>
+            <div class="committee-card-container">
+               <div class="committee-card">
+                  <img src="public/advisor-bld.jpg" alt="Advisor 1">
+                  <h3>Prof. B. L Desai</h3>
+                  <h5>Executive Dean</h5>
+               </div>
+               <div class="committee-card">
+                  <img src="public/advisor-registrar.jpg" alt="Advisor 2">
+                  <h3>Prof. B. S Anami</h3>
+                  <h5>Registrar</h5>
+               </div>
+               <div class="committee-card">
+                  <img src="public/advisor-uma.jpg" alt="Advisor 2">
+                  <h3>Dr. Uma Mudenagudi</h3>
+                  <h5>Dean R&D</h5>
+               </div>
+               <div class="committee-card">
+                  <img src="public/advisor-srujana.jpg" alt="Advisor 2">
+                  <h3>Ms. Srujana K</h3>
+                  <h5>AI Leader at Walmart Global Tech, USA</h5>
+               </div>
             </div>
-            <div class="card">
-                <img src="https://via.placeholder.com/100" alt="Member 3">
-                <h3>Emily Brown</h3>
+         </div>
+         <div class="committee-category">
+            <h3 class="committee-category-title">WiDS Ambassadors</h3>
+            <div class="committee-card-container">
+               <div class="committee-card">
+                  <img src="public/co-ambassador-sujatha.jpg" alt="Ambassador 1">
+                  <h3>Dr. Sujatha C</h3>
+                  <h5>Professor SoCSE</h5>
+               </div>
             </div>
-            <div class="card">
-                <img src="https://via.placeholder.com/100" alt="Member 4">
-                <h3>Michael Lee</h3>
+         </div>
+         <div class="committee-category">
+            <h3 class="committee-category-title">WiDS Co-Ambassadors</h3>
+            <div class="committee-card-container">
+               <div class="committee-card">
+                  <img src="public/co-ambassador-padmashree.jpg" alt="Co-Ambassador 1">
+                  <h3>Dr. Padmashree Desai</h3>
+                  <h5>Professor SoCSE</h5>
+               </div>
+               <div class="committee-card">
+                  <img src="public/nehamadam.jpeg" alt="Co-Ambassador 2">
+                  <h3>Mrs. Neha T</h3>
+                  <h5>Faculty SoCSE</h5>
+               </div>
             </div>
-            <div class="card">
-                <img src="https://via.placeholder.com/100" alt="Member 5">
-                <h3>Sarah Wilson</h3>
-            </div>
-            <div class="card">
-                <img src="https://via.placeholder.com/100" alt="Member 6">
-                <h3>Chris Evans</h3>
-            </div>
-            <div class="card">
-                <img src="https://via.placeholder.com/100" alt="Member 7">
-                <h3>Anna White</h3>
-            </div>
-            <div class="card">
-                <img src="https://via.placeholder.com/100" alt="Member 8">
-                <h3>David Clark</h3>
-            </div>
-        </div>
-    </div>
-
-    <!-- Footer -->
-    <footer>
-        <p>KLE Technological University</p>
-    </footer>
-</body>
+         </div>
+         <div class="committee-category">
+            <h3 class="committee-category-title">Organizers</h3>
+            <p class="committee-name-block">Dr. P. G Sunitha Hiremath | Prof. Sneha V | Prof. Tulasi B | Prof. Shilpa Hotagi | Prof. Channabasappa | Prof. Vaishnavi </p>
+         </div>
+      </div>
+      <!-- Footer -->
+      <footer>
+         <p>KLE Technological University</p>
+      </footer>
+   </body>
 </html>
-
